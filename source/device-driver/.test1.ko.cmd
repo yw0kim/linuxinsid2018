@@ -1,0 +1,1 @@
+cmd_/home/koain/linuxinside/source/device-driver/test1.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/koain/linuxinside/source/device-driver/test1.ko /home/koain/linuxinside/source/device-driver/test1.o /home/koain/linuxinside/source/device-driver/test1.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_/home/koain/linuxinside/source/module-programming/helloadd.o := ld -m elf_x86_64   -r -o /home/koain/linuxinside/source/module-programming/helloadd.o /home/koain/linuxinside/source/module-programming/hello-2.o /home/koain/linuxinside/source/module-programming/add.o 

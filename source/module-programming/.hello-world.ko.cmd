@@ -1,0 +1,1 @@
+cmd_/home/koain/linuxinside/source/module-programming/hello-world.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/koain/linuxinside/source/module-programming/hello-world.ko /home/koain/linuxinside/source/module-programming/hello-world.o /home/koain/linuxinside/source/module-programming/hello-world.mod.o ;  true

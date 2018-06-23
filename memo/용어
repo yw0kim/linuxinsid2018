@@ -1,0 +1,19 @@
+* BSP : 
+
+* Device Tree : 일로 다 넘어감(4.x)
+
+* gpio : 
+
+* head.s : 
+
+* Linaro :
+
+* Yocto : "The Yocto Project is an open source collaboration project that provides templates, tools and methods to help you create custom Linux-based systems for embedded products regardless of the hardware architecture."
+
+* build root : 
+
+* debian bootstrap???
+
+* TTBR
+
+* AMBA 

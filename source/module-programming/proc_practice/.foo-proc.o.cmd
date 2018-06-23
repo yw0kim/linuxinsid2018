@@ -1,0 +1,1 @@
+cmd_/home/koain/linuxinside/source/module-programming/proc_practice/foo-proc.o := ld -m elf_x86_64   -r -o /home/koain/linuxinside/source/module-programming/proc_practice/foo-proc.o /home/koain/linuxinside/source/module-programming/proc_practice/foo.o /home/koain/linuxinside/source/module-programming/proc_practice/proc.o 

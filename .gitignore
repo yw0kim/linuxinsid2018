@@ -5,3 +5,14 @@
 .profile
 .ssh/
 .viminfo
+*tar*
+*zip
+qemu.git/
+lsk-4.14/
+mnt1/
+rootfs.ext4
+*.ko
+*mod*
+*.o
+Module.symbers
+modules.order
