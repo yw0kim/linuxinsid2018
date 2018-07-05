@@ -811,6 +811,9 @@ deps_/home/koain/linuxinside/source/device-driver/platform-device/device/platfor
     $(wildcard include/config/suspend.h) \
     $(wildcard include/config/hibernate/callbacks.h) \
   include/linux/mod_devicetable.h \
+  include/generated/uapi/linux/version.h \
+  include/linux/property.h \
+  include/linux/fwnode.h \
 
 /home/koain/linuxinside/source/device-driver/platform-device/device/platform_device.o: $(deps_/home/koain/linuxinside/source/device-driver/platform-device/device/platform_device.o)
 
