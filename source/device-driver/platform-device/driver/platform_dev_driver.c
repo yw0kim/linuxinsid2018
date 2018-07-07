@@ -71,7 +71,7 @@ static int my_pdev_probe(struct platform_device *pdev)
 	m_data->pdev = pdev;
 
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-	if (unlikely(res)) {
+	if (unlikely(!res)) {
 		pr_err(" Specified Resource Not Available... 1\n");
 		return -1;
 	}
@@ -139,10 +139,7 @@ static int pdev_driver_init(void)
 
 static void pdev_driver_exit(void)
 {
-	int ret;
-
 	platform_driver_unregister(&my_pdev_driver);
-	printk(KERN_INFO "pdev driver unregister %d\n", ret);
 }
 
 module_init(pdev_driver_init);

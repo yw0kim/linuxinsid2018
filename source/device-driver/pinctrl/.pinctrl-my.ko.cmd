@@ -1,0 +1,1 @@
+cmd_/home/koain/linuxinside/source/device-driver/pinctrl/pinctrl-my.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/koain/linuxinside/source/device-driver/pinctrl/pinctrl-my.ko /home/koain/linuxinside/source/device-driver/pinctrl/pinctrl-my.o /home/koain/linuxinside/source/device-driver/pinctrl/pinctrl-my.mod.o ;  true

@@ -1,0 +1,6 @@
+# drop dtb qemu option
+-machine virt,dumpdtb=<FILENAMEdtb=<FILENAME.dtb>>
+
+# dtb to dts
+sudo apt install device-tree-compiler
+dtc -I dtb -O dts virt.dtb -o virt.dts 
