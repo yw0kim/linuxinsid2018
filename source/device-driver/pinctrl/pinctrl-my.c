@@ -181,28 +181,42 @@ static const struct my_pin_group my_pin_groups[] = {
 // pinctrl_ops
 static int my_get_groups_count(struct pinctrl_dev *pctldev)
 {
-	return ARRAY_SIZE(my_pin_groups);
+	struct my_pinctrl *pctl = pinctrl_dev_get_drvdata(pctldev);
+
+	return pinctrl->num_groups;
 }
 
 static const char *my_get_group_name(struct pinctrl_dev *pctldev,
 		unsigned selector)
 {
-	return my_pin_groups[selector].name;
+	struct my_pinctrl *pctl = pinctrl_dev_get_drvdata(pctldev);
+
+	return pctl->groups[selector].name;
 }
 
 static int my_get_group_pins(struct pinctrl_dev *pctldev, unsigned selector,
 		const unsigned **pins,
 		unsigned *num_pins)
 {
-	*pins = (unsigned *) my_pin_groups[selector].pins;
-	*num_pins = my_pin_groups[selector].num_pins;
+	struct my_pinctrl *pctl = pinctrl_dev_get_drvdata(pctldev);
+
+	*pins = pctl->groups[selector].pins;
+	*num_pins = pctl->groups[selector].num_pins;
+
 	return 0;
+}
+
+static void my_pin_dbg_show(struct pinctrl_dev *pctldev,
+					     struct seq_file *s, unsigned int offset)
+{
+		seq_printf(s, " %s", dev_name(pctldev->dev));
 }
 
 static struct pinctrl_ops my_pctrl_ops = {
 	.get_groups_count = my_get_groups_count,
 	.get_group_name = my_get_group_name,
 	.get_group_pins = my_get_group_pins,
+	.pin_dbg_show = my_pin_dbg_show,
 };
 ////
 
@@ -238,24 +252,31 @@ static const struct my_pin_function my_pin_functions[] = {
 
 static int my_get_functions_count(struct pinctrl_dev *pctldev)
 {
-	return ARRAY_SIZE(my_pin_functions);
+	struct my_pinctrl *pinctrl = pinctrl_dev_get_drvdata(pctldev);
+
+	return pinctrl->num_functions;
 }
 
 static const char *my_get_fname(struct pinctrl_dev *pctldev, unsigned selector)
 {
-	return my_pin_functions[selector].name;
+	struct my_pinctrl *pinctrl = pinctrl_dev_get_drvdata(pctldev);
+
+	return pinctrl->functions[selector].name;
 }
 
 static int my_get_groups(struct pinctrl_dev *pctldev, unsigned selector,
 		const char * const **groups,
 		unsigned * const num_groups)
 {
-	*groups = my_pin_functions[selector].groups;
-	*num_groups = my_pin_functions[selector].num_groups;
+	struct my_pinctrl *pinctrl = pinctrl_dev_get_drvdata(pctldev);
+
+	*groups = pinctrl->functions[selector].groups;
+	*num_groups = pinctrl->functions[selector].num_groups;
+
 	return 0;
 }
 
-/*
+/* !!!
 static int my_set_mux(struct pinctrl_dev *pctldev, unsigned selector,
 		unsigned group)
 {
@@ -264,7 +285,7 @@ static int my_set_mux(struct pinctrl_dev *pctldev, unsigned selector,
 	writeb((readb(MUX)|regbit), MUX)
 		return 0;
 }
-*/
+!!! */
 
 static struct pinmux_ops my_pinmux_ops = {
 	.get_functions_count = my_get_functions_count,
@@ -283,6 +304,10 @@ static int my_pin_config_get(struct pinctrl_dev *pctldev,
 		unsigned long *config)
 {
 	printk(KERN_INFO "my_pin_config_get called\n");
+
+	struct my_pinconf pin_conf = pctldev->desc->pins[offset].pin_conf;
+
+	printk(KERN_INFO "pin conf : %d %d %d\n", pin_conf->confs[0], pin_conf->confs[1], pin_conf->confs[2]);
 }
 
 static int my_pin_config_set(struct pinctrl_dev *pctldev,
@@ -293,26 +318,9 @@ static int my_pin_config_set(struct pinctrl_dev *pctldev,
 	printk(KERN_INFO "my_pin_config_set called\n");
 }
 
-static int my_pin_config_group_get (struct pinctrl_dev *pctldev,
-		unsigned selector,
-		unsigned long *config)
-{
-	printk(KERN_INFO "my_pin_config_group_get called\n");
-}
-
-static int my_pin_config_group_set (struct pinctrl_dev *pctldev,
-		unsigned selector,
-		unsigned long *config,
-		unsigned int num_configs)
-{
-	printk(KERN_INFO "my_pin_config_group_set called\n");
-}
-
 static struct pinconf_ops my_pinconf_ops = {
 	.pin_config_get = my_pin_config_get,
 	.pin_config_set = my_pin_config_set,
-	.pin_config_group_get = my_pin_config_group_get,
-	.pin_config_group_set = my_pin_config_group_set,
 };
 
 //// 
