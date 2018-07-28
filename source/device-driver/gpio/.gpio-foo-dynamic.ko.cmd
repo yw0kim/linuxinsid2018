@@ -1,0 +1,1 @@
+cmd_/root/linuxinside2018/source/device-driver/gpio/gpio-foo-dynamic.ko := aarch64-linux-gnu-ld -EL -r  -maarch64linux -T ./scripts/module-common.lds --build-id  -o /root/linuxinside2018/source/device-driver/gpio/gpio-foo-dynamic.ko /root/linuxinside2018/source/device-driver/gpio/gpio-foo-dynamic.o /root/linuxinside2018/source/device-driver/gpio/gpio-foo-dynamic.mod.o ;  true
