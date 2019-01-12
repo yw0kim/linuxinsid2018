@@ -1,16 +1,9 @@
 #ifndef _SERVER_H_
 #define _SERVER_H_
 
-#include <stdint.h>
+#include "../common.h"
 
-struct message {
-	uint
-};
-
-struct peer {
-	int socket;
-	struct sockaddr_in addr;
-
-};
+extern struct peer server;
+extern struct clients[MAX_CLIENTS];
 
 #endif // _SERVER_H_

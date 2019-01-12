@@ -107,3 +107,4 @@ qemu 추가 옵션
 <http://jake.dothome.co.kr/qemu/>
 
 * 우리 시스템은 msi 방식이라 request_irq가 안먹음.  qemu버전이 높아서 pdev->irq가 0으로 되어있음. 레거시로 하던가 다른 방법으로 해야함.
+
